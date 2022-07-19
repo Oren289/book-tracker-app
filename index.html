@@ -7,23 +7,21 @@
     <title>Bookshelf App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/cc0302340a.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
       <nav class="navbar navbar-expand-lg">
-        <div class="container">
+        <div class="container d-flex justify-content-sm-start justify-content-center align-items-center">
           <a class="navbar-brand" href="#"><strong>My.Bookshelf</strong></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
         </div>
       </nav>
     </header>
     <main>
       <div class="container">
         <div class="row mt-5">
-          <div class="col-md-4">
-            <div class="card">
+          <div class="col-lg-4">
+            <div class="card mb-2">
               <div class="card-header">
                 <h4 class="fw-bold m-0">Add Book</h4>
               </div>
@@ -40,16 +38,16 @@
                   <label for="complete_status" class="form-check-label">Completed</label>
                 </div>
                 <div class="d-grid">
-                  <button type="button" class="btn btn-primary">Add to <strong id="shelf">Completed Books</strong></button>
+                  <button type="button" class="btn btn-primary shadow-none">Add to <strong id="shelf">Completed Books</strong></button>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-8">
+          <div class="col-lg-8">
             <div class="card mb-3">
               <div class="card-body input-group">
                 <input type="text" class="form-control shadow-none" id="search_input" placeholder="Find your books..." />
-                <button type="button" class="btn btn-primary shadow-none" id="search_button">Search</button>
+                <button type="button" class="btn btn-primary shadow-none" id="search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
               </div>
             </div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -65,7 +63,7 @@
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
-                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box">
+                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box mb-5">
                   <div class="row">
                     <div class="col p-5 d-flex align-items-center justify-content-center visually-hidden">
                       <h4 class="fw-bold">Oops, no book to display...</h4>
@@ -130,19 +128,19 @@
                 </div>
               </div>
               <div class="tab-pane fade" id="read-tab-pane" role="tabpanel" aria-labelledby="read-tab" tabindex="0">
-                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box">
+                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box mb-5">
                   <div class="row">
                     <div class="col p-5 d-flex align-items-center justify-content-center">
-                      <h4 class="fw-bold">Oops, no book to display...</h4>
+                      <h4 class="fw-bold">Oops, no book to display :(</h4>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="tab-pane fade" id="unread-tab-pane" role="tabpanel" aria-labelledby="unread-tab" tabindex="0">
-                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box">
+                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box mb-5">
                   <div class="row">
                     <div class="col p-5 d-flex align-items-center justify-content-center">
-                      <h4 class="fw-bold">Oops, no book to display...</h4>
+                      <h4 class="fw-bold">Oops, no book to display :(</h4>
                     </div>
                   </div>
                 </div>
@@ -152,15 +150,19 @@
         </div>
       </div>
     </main>
-    <footer class="text-center text-lg-start mt-5">
-      <section class="border-bottom border-secondary">kontol</section>
-
-      <section>
-        <!-- Copyright -->
-        <div class="text-center p-3">Copyright © 2022 <a class="text-decoration-none text-reset" href="https://mdbootstrap.com/">Oren289</a></div>
-        <!-- Copyright -->
+    <footer>
+      <section class="p-2 d-flex justify-content-center align-items-center social_section">
+        <a class="btn btn-outline-light rounded-circle socmed m-1" href="https://github.com/Oren289" role="button"><i class="fa-brands fa-github"></i></a>
+        <a class="btn btn-outline-light rounded-circle socmed m-1" href="https://www.instagram.com/mhrdk289/" role="button"><i class="fa-brands fa-instagram"></i></a>
+        <a class="btn btn-outline-light rounded-circle socmed m-1" href="https://www.linkedin.com/in/ilhanmp/" role="button"><i class="fa-brands fa-linkedin"></i></a>
+        <a class="btn btn-outline-light rounded-circle socmed m-1" href="https://wa.me/085219850202" role="button"><i class="fa-brands fa-whatsapp"></i></a>
+      </section>
+      <hr class="m-0 separator text-secondary" />
+      <section class="text-center p-4">
+        <div>Copyright &copy; 2022 Oren289</div>
       </section>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
   </body>
 </html>

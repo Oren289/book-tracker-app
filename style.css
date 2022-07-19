@@ -4,8 +4,16 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: whitesmoke;
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
 }
 
 /* header */
@@ -43,6 +51,10 @@ nav {
   background-color: #7c00c4;
 }
 
+.btn-primary:focus {
+  background-color: #7c00c4;
+}
+
 .nav-link {
   color: #9800f0;
 }
@@ -50,11 +62,33 @@ nav {
 .nav-link:hover {
   color: #7c00c4;
 }
+
+.nav-link:focus {
+  color: #7c00c4;
+}
+
+.socmed {
+  font-size: 1rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .separator {
+  color: red;
+} */
 /* end of utilities */
 
 /* footer */
 footer {
-  background-color: #3d3c42;
+  background-color: #161616;
   color: whitesmoke;
+  margin-top: auto;
+}
+
+.social_section {
+  background-color: #161616;
 }
 /* end of footer */

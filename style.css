@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+/* header */
+nav {
+  background-color: #9900f0;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+/* end of header */
+
+/* input card */
+.card-header {
+  background-color: #9800f0;
+  color: white;
+}
+/* end of input card */
+
+/* bookshelf card */
+.tab_box {
+  max-height: 80vh;
+  overflow: auto;
+}
+/* end of bookshelf card */
+
+/* utilities */
+.btn-primary {
+  background-color: #9800f0;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #7c00c4;
+}
+
+.nav-link {
+  color: #9800f0;
+}
+
+.nav-link:hover {
+  color: #7c00c4;
+}
+/* end of utilities */
+
+/* footer */
+footer {
+  background-color: #3d3c42;
+  color: whitesmoke;
+}
+/* end of footer */

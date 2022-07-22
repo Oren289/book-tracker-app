@@ -15,8 +15,6 @@ const addToButtonText = document.getElementById("shelf");
 const emptyRowText = document.getElementById("text_row");
 
 const tabContainer = document.querySelector(".nav-tabs");
-const readTab = document.getElementById("read-tab");
-const unreadTab = document.getElementById("unread-tab");
 const tabRow = document.querySelector(".tabRow");
 
 const bookArray = JSON.parse(localStorage.getItem("books")) || [];
@@ -65,6 +63,7 @@ addBookBtn.addEventListener("click", (e) => {
   checkbox.checked = false;
 
   removeEmptyRowText();
+  updateTabFilter();
 });
 
 const addBook = (title, author, year, completeStatus) => {
@@ -187,9 +186,74 @@ function tabFilter(e) {
   });
 }
 
+function updateTabFilter() {
+  const items = tabRow.childNodes;
+  const tabs = tabContainer.childNodes;
+  let activeTab;
+
+  tabs.forEach((tab) => {
+    if (tab.nodeName == "#text") {
+      return;
+    }
+
+    if (tab.children[0].classList.contains("active")) {
+      activeTab = tab.children[0].id;
+    }
+  });
+
+  items.forEach((item) => {
+    item.classList.remove("visually-hidden");
+    if (activeTab == "read-tab") {
+      if (item.classList.contains("unread")) {
+        item.classList.add("visually-hidden");
+      }
+    } else if (activeTab == "unread-tab") {
+      if (item.classList.contains("read")) {
+        item.classList.add("visually-hidden");
+      }
+    }
+  });
+}
+
 const actions = (e) => {
   const target = e.target;
-  const index = Array.from();
+
+  const rootElement = target.parentElement.parentElement.parentElement;
+
+  if (target.classList.contains("delete_button")) {
+    deleteBook(rootElement);
+    rootElement.remove();
+  } else if (target.classList.contains("mark_read_button")) {
+    changeReadStatus(rootElement);
+  }
+
+  removeEmptyRowText;
 };
 
-const changeReadStatus = () => {};
+tabRow.addEventListener("click", actions);
+tabRow.addEventListener("click", updateTabFilter);
+
+const changeReadStatus = (book) => {
+  const index = Array.from(tabRow.childNodes).indexOf(book);
+
+  bookArray[index].completeStatus = !bookArray[index].completeStatus;
+
+  if (bookArray[index].completeStatus) {
+    book.classList.remove("unread");
+    book.classList.add("read");
+    book.children[0].children[1].children[1].innerText = "Mark Unread";
+  } else {
+    book.classList.remove("read");
+    book.classList.add("unread");
+    book.children[0].children[1].children[1].innerText = "Mark Read";
+  }
+
+  localStorage.setItem("books", JSON.stringify(bookArray));
+};
+
+const deleteBook = (book) => {
+  const index = Array.from(tabRow.childNodes).indexOf(book);
+
+  bookArray.splice(index, 1);
+  localStorage.setItem("books", JSON.stringify(bookArray));
+};

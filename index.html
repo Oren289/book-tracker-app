@@ -26,20 +26,22 @@
                 <h4 class="fw-bold m-0">Add Book</h4>
               </div>
               <div class="card-body">
-                <label for="input_title" class="form-label mb-0">Title</label>
-                <input type="text" class="form-control mb-3 shadow-none" id="input_title" />
-                <label for="input_author" class="form-label mb-0">Author</label>
-                <input type="text" class="form-control mb-3 shadow-none" id="input_author" />
-                <label for="input_year" class="form-label mb-0 shadow-none">Year</label>
-                <input type="text" class="form-control mb-3 shadow-none" id="input_year" />
+                <form id="input_book">
+                  <label for="input_title" class="form-label mb-0">Title</label>
+                  <input type="text" class="form-control mb-3 shadow-none" id="input_title" />
+                  <label for="input_author" class="form-label mb-0">Author</label>
+                  <input type="text" class="form-control mb-3 shadow-none" id="input_author" />
+                  <label for="input_year" class="form-label mb-0 shadow-none">Year</label>
+                  <input type="number" class="form-control mb-3 shadow-none" id="input_year" />
 
-                <div class="form-check mb-3">
-                  <input type="checkbox" class="form-check-input shadow-none" value="true" id="complete_status" />
-                  <label for="complete_status" class="form-check-label">Completed</label>
-                </div>
-                <div class="d-grid">
-                  <button type="button" class="btn btn-primary shadow-none">Add to <strong id="shelf">Completed Books</strong></button>
-                </div>
+                  <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input shadow-none" value="true" id="complete_status" />
+                    <label for="complete_status" class="form-check-label">Read</label>
+                  </div>
+                  <div class="d-grid">
+                    <button type="button" class="btn btn-primary shadow-none" id="add_book_button">Add to <strong id="shelf">Read Books</strong></button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -52,94 +54,26 @@
             </div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">All</button>
+                <button class="nav-link active" id="read-tab" data-bs-toggle="tab" data-bs-target="#read-tab-pane" type="button" role="tab" aria-controls="read-tab-pane" aria-selected="true">Read Books</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="read-tab" data-bs-toggle="tab" data-bs-target="#read-tab-pane" type="button" role="tab" aria-controls="read-tab-pane" aria-selected="false">Read</button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="unread-tab" data-bs-toggle="tab" data-bs-target="#unread-tab-pane" type="button" role="tab" aria-controls="unread-tab-pane" aria-selected="false">Unread</button>
+                <button class="nav-link" id="unread-tab" data-bs-toggle="tab" data-bs-target="#unread-tab-pane" type="button" role="tab" aria-controls="unread-tab-pane" aria-selected="false">Unread Books</button>
               </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
-                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box mb-5">
-                  <div class="row">
-                    <div class="col p-5 d-flex align-items-center justify-content-center visually-hidden">
-                      <h4 class="fw-bold">Oops, no book to display...</h4>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="card my-3">
-                        <div class="card-body">
-                          <h5 class="book_title fw-bold">Harry Potter: And the Sorcerer Stone</h5>
-                          <div>Author: <span>J.K. Rowlings</span></div>
-                          <div>Year: <span>1992</span></div>
-                        </div>
-                        <div class="card-footer d-grid bg-white">
-                          <button type="button" class="btn btn-secondary mb-1">Edit</button>
-                          <button type="button" class="btn btn-success mb-1">Mark Read</button>
-                          <button type="button" class="btn btn-danger mb-1">Delete</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="card my-3">
-                        <div class="card-body">
-                          <h5 class="book_title fw-bold">Harry Potter: And the Sorcerer Stone</h5>
-                          <div>Author: <span>J.K. Rowlings</span></div>
-                          <div>Year: <span>1992</span></div>
-                        </div>
-                        <div class="card-footer d-grid bg-white">
-                          <button type="button" class="btn btn-secondary mb-1">Edit</button>
-                          <button type="button" class="btn btn-success mb-1">Mark Read</button>
-                          <button type="button" class="btn btn-danger mb-1">Delete</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="card my-3">
-                        <div class="card-body">
-                          <h5 class="book_title fw-bold">Harry Potter: And the Sorcerer Stone</h5>
-                          <div>Author: <span>J.K. Rowlings</span></div>
-                          <div>Year: <span>1992</span></div>
-                        </div>
-                        <div class="card-footer d-grid bg-white">
-                          <button type="button" class="btn btn-secondary mb-1">Edit</button>
-                          <button type="button" class="btn btn-success mb-1">Mark Read</button>
-                          <button type="button" class="btn btn-danger mb-1">Delete</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="card my-3">
-                        <div class="card-body">
-                          <h5 class="book_title fw-bold">Harry Potter: And the Sorcerer Stone</h5>
-                          <div>Author: <span>J.K. Rowlings</span></div>
-                          <div>Year: <span>1992</span></div>
-                        </div>
-                        <div class="card-footer d-grid bg-white">
-                          <button type="button" class="btn btn-secondary mb-1">Edit</button>
-                          <button type="button" class="btn btn-success mb-1">Mark Read</button>
-                          <button type="button" class="btn btn-danger mb-1">Delete</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane fade" id="read-tab-pane" role="tabpanel" aria-labelledby="read-tab" tabindex="0">
-                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box mb-5">
-                  <div class="row">
-                    <div class="col p-5 d-flex align-items-center justify-content-center">
+              <div class="tab-pane fade show active" id="read-tab-pane" role="tabpanel" aria-labelledby="read-tab" tabindex="0">
+                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box pb-3 mb-5">
+                  <div class="row" id="read_row">
+                    <div class="col p-5 d-flex align-items-center justify-content-center" id="empty_read_row_text">
                       <h4 class="fw-bold">Oops, no book to display :(</h4>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="tab-pane fade" id="unread-tab-pane" role="tabpanel" aria-labelledby="unread-tab" tabindex="0">
-                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box mb-5">
-                  <div class="row">
-                    <div class="col p-5 d-flex align-items-center justify-content-center">
+                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box pb-3 mb-5">
+                  <div class="row" id="unread_row">
+                    <div class="col p-5 d-flex align-items-center justify-content-center" id="empty_unread_row_text">
                       <h4 class="fw-bold">Oops, no book to display :(</h4>
                     </div>
                   </div>

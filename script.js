@@ -12,13 +12,12 @@ const checkbox = document.getElementById("complete_status");
 
 const addToButtonText = document.getElementById("shelf");
 
-const emptyAllRowText = document.getElementById("empty_all_row_text");
-const emptyReadRowText = document.getElementById("empty_read_row_text");
-const emptyUnreadRowText = document.getElementById("empty_unread_row_text");
+const emptyRowText = document.getElementById("text_row");
 
-const allTabRow = document.getElementById("all_row");
-const readTabRow = document.getElementById("read_row");
-const unreadTabRow = document.getElementById("unread_row");
+const tabContainer = document.querySelector(".nav-tabs");
+const readTab = document.getElementById("read-tab");
+const unreadTab = document.getElementById("unread-tab");
+const tabRow = document.querySelector(".tabRow");
 
 const bookArray = JSON.parse(localStorage.getItem("books")) || [];
 
@@ -28,6 +27,8 @@ const searchBtn = document.getElementById("search_button");
 const editBtn = document.getElementById("edit_button");
 const markReadBtn = document.getElementById("mark_read");
 const deleteBtn = document.getElementById("delete_button");
+
+tabContainer.addEventListener("click", tabFilter);
 
 document.addEventListener("DOMContentLoaded", () => {
   bookArray.forEach(createBookCard);
@@ -58,15 +59,12 @@ addBookBtn.addEventListener("click", (e) => {
 
   createBookCard(newBook);
 
-  console.log(inputTitle.value);
-  console.log(inputAuthor.value);
-  console.log(inputYear.value);
-  console.log(inputCompleteStatus);
-
   inputTitle.value = "";
   inputAuthor.value = "";
   inputYear.value = "";
   checkbox.checked = false;
+
+  removeEmptyRowText();
 });
 
 const addBook = (title, author, year, completeStatus) => {
@@ -82,18 +80,20 @@ const addBook = (title, author, year, completeStatus) => {
 
   localStorage.setItem("books", JSON.stringify(bookArray));
 
-  removeEmptyRowText();
   return { title, author, year, completeStatus };
 };
 
 const createBookCard = ({ title, author, year, completeStatus }) => {
   // elements
-  const allRowContainer = document.getElementById("all_row");
-  const readRowContainer = document.getElementById("read_row");
-  const unreadRowContainer = document.getElementById("unread_row");
+  const rowContainer = document.getElementById("tab_row");
 
   const colContainer = document.createElement("div");
   colContainer.classList.add("col-md-6");
+  if (!completeStatus) {
+    colContainer.classList.add("unread");
+  } else {
+    colContainer.classList.add("read");
+  }
 
   const cardContainer = document.createElement("div");
   cardContainer.classList.add("card");
@@ -159,27 +159,33 @@ const createBookCard = ({ title, author, year, completeStatus }) => {
 
   colContainer.appendChild(cardContainer);
 
-  if (completeStatus == true) {
-    readRowContainer.appendChild(colContainer);
-  } else {
-    unreadRowContainer.appendChild(colContainer);
-  }
+  rowContainer.appendChild(colContainer);
 };
 
 const removeEmptyRowText = () => {
-  emptyReadRowText.classList.remove("visually-hidden");
-  emptyUnreadRowText.classList.remove("visually-hidden");
-
-  console.log(readTabRow.children.length);
-
-  if (readTabRow.children.length > 1) {
-    emptyReadRowText.classList.add("visually-hidden");
-  }
-
-  if (unreadTabRow.children.length > 1) {
-    emptyUnreadRowText.classList.add("visually-hidden");
+  emptyRowText.classList.remove("visually-hidden");
+  if (tabRow.children.length > 0) {
+    emptyRowText.classList.add("visually-hidden");
   }
 };
+
+function tabFilter(e) {
+  const target = e.target;
+  const items = tabRow.childNodes;
+
+  items.forEach((item) => {
+    item.classList.remove("visually-hidden");
+    if (target.classList.contains("readTab")) {
+      if (item.classList.contains("unread")) {
+        item.classList.add("visually-hidden");
+      }
+    } else if (target.classList.contains("unreadTab")) {
+      if (item.classList.contains("read")) {
+        item.classList.add("visually-hidden");
+      }
+    }
+  });
+}
 
 const actions = (e) => {
   const target = e.target;

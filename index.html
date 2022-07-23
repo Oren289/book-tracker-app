@@ -39,7 +39,7 @@
                     <label for="complete_status" class="form-check-label">Read</label>
                   </div>
                   <div class="d-grid">
-                    <button type="button" class="btn btn-primary shadow-none" id="add_book_button">Add to <strong id="shelf">Read Books</strong></button>
+                    <button type="button" class="btn btn-primary shadow-none" id="add_book_button">Add to <strong id="shelf">Unread Books</strong></button>
                   </div>
                 </form>
               </div>
@@ -54,29 +54,24 @@
             </div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="read-tab" data-bs-toggle="tab" data-bs-target="#read-tab-pane" type="button" role="tab" aria-controls="read-tab-pane" aria-selected="true">Read Books</button>
+                <button class="nav-link allTab active" id="all-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">All Books</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="unread-tab" data-bs-toggle="tab" data-bs-target="#unread-tab-pane" type="button" role="tab" aria-controls="unread-tab-pane" aria-selected="false">Unread Books</button>
+                <button class="nav-link readTab" id="read-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Read Books</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link unreadTab" id="unread-tab" data-bs-toggle="tab" type="button" aria-selected="false">Unread Books</button>
               </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="read-tab-pane" role="tabpanel" aria-labelledby="read-tab" tabindex="0">
+              <div class="tab-pane fade show active" id="tab-pane" role="tabpanel">
                 <div class="container card border-top-0 rounded-0 rounded-bottom tab_box pb-3 mb-5">
-                  <div class="row" id="read_row">
+                  <div class="row" id="text_row">
                     <div class="col p-5 d-flex align-items-center justify-content-center" id="empty_read_row_text">
                       <h4 class="fw-bold">Oops, no book to display :(</h4>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="tab-pane fade" id="unread-tab-pane" role="tabpanel" aria-labelledby="unread-tab" tabindex="0">
-                <div class="container card border-top-0 rounded-0 rounded-bottom tab_box pb-3 mb-5">
-                  <div class="row" id="unread_row">
-                    <div class="col p-5 d-flex align-items-center justify-content-center" id="empty_unread_row_text">
-                      <h4 class="fw-bold">Oops, no book to display :(</h4>
-                    </div>
-                  </div>
+                  <div class="row tabRow" id="tab_row"></div>
                 </div>
               </div>
             </div>

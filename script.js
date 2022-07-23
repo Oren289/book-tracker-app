@@ -1,9 +1,3 @@
-// form input
-// const inputTitle = document.getElementById("input_title");
-// const inputAuthor = document.getElementById("input_author");
-// const inputYear = document.getElementById("input_year");
-// const inputCompleteStatus = document.getElementById("complete_status");
-
 const inputForm = document.getElementById("input_book");
 const inputTitle = inputForm["input_title"];
 const inputAuthor = inputForm["input_author"];

@@ -10,6 +10,12 @@ const inputAuthor = inputForm["input_author"];
 const inputYear = inputForm["input_year"];
 const checkbox = document.getElementById("complete_status");
 
+const modalInputForm = document.getElementById("modal_input_book");
+const modalInputTitle = modalInputForm["modal_input_title"];
+const modalInputAuthor = modalInputForm["modal_input_author"];
+const modalInputYear = modalInputForm["modal_input_year"];
+let modalDataIndex = 0;
+
 const addToButtonText = document.getElementById("shelf");
 
 const emptyRowText = document.getElementById("text_row");
@@ -25,6 +31,7 @@ const searchBtn = document.getElementById("search_button");
 const editBtn = document.getElementById("edit_button");
 const markReadBtn = document.getElementById("mark_read");
 const deleteBtn = document.getElementById("delete_button");
+const modalSaveChangesBtn = document.getElementById("modal_save_changes_button");
 
 tabContainer.addEventListener("click", tabFilter);
 
@@ -123,6 +130,8 @@ const createBookCard = ({ title, author, year, completeStatus }) => {
   editButton.classList.add("btn-secondary");
   editButton.classList.add("mb-1");
   editButton.classList.add("edit_button");
+  editButton.setAttribute("data-bs-toggle", "modal");
+  editButton.setAttribute("data-bs-target", "#staticBackdrop");
   editButton.innerText = "Edit";
 
   const markReadButton = document.createElement("button");
@@ -163,7 +172,7 @@ const createBookCard = ({ title, author, year, completeStatus }) => {
 
 const removeEmptyRowText = () => {
   emptyRowText.classList.remove("visually-hidden");
-  if (tabRow.children.length > 0) {
+  if (tabRow.hasChildNodes) {
     emptyRowText.classList.add("visually-hidden");
   }
 };
@@ -225,6 +234,8 @@ const actions = (e) => {
     rootElement.remove();
   } else if (target.classList.contains("mark_read_button")) {
     changeReadStatus(rootElement);
+  } else if (target.classList.contains("edit_button")) {
+    getEditData(rootElement);
   }
 
   removeEmptyRowText;
@@ -257,3 +268,27 @@ const deleteBook = (book) => {
   bookArray.splice(index, 1);
   localStorage.setItem("books", JSON.stringify(bookArray));
 };
+
+const getEditData = (book) => {
+  modalDataIndex = Array.from(tabRow.childNodes).indexOf(book);
+
+  modalInputTitle.value = bookArray[modalDataIndex].title;
+  modalInputAuthor.value = bookArray[modalDataIndex].author;
+  modalInputYear.value = bookArray[modalDataIndex].year;
+};
+
+const saveEditData = () => {
+  const cardBodyContainer = tabRow.childNodes[modalDataIndex].childNodes[0].childNodes[0];
+
+  bookArray[modalDataIndex].title = modalInputTitle.value;
+  bookArray[modalDataIndex].author = modalInputAuthor.value;
+  bookArray[modalDataIndex].year = modalInputYear.value;
+
+  cardBodyContainer.childNodes[0].innerText = bookArray[modalDataIndex].title;
+  cardBodyContainer.childNodes[1].innerText = "Author: " + bookArray[modalDataIndex].author;
+  cardBodyContainer.childNodes[2].innerText = "Year: " + bookArray[modalDataIndex].year;
+
+  localStorage.setItem("books", JSON.stringify(bookArray));
+};
+
+modalSaveChangesBtn.addEventListener("click", saveEditData);

@@ -76,10 +76,13 @@ nav {
   align-items: center;
 }
 
-/* .separator {
-  color: red;
-} */
-/* end of utilities */
+.bg-purple {
+  background-color: #9800f0;
+}
+
+.modal-title {
+  color: white;
+}
 
 /* footer */
 footer {

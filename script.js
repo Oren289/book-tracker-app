@@ -212,11 +212,11 @@ function tabFilter(e) {
 
     item.classList.remove("visually-hidden");
     if (target.classList.contains("readTab")) {
-      if (item.classList.contains("unread") || !title.includes(searchString)) {
+      if (item.classList.contains("unread") || (!title.includes(searchString) && !author.includes(searchString) && !year.includes(searchString))) {
         item.classList.add("visually-hidden");
       }
     } else if (target.classList.contains("unreadTab")) {
-      if (item.classList.contains("read") || !title.includes(searchString)) {
+      if (item.classList.contains("read") || (!title.includes(searchString) && !author.includes(searchString) && !year.includes(searchString))) {
         item.classList.add("visually-hidden");
       }
     }

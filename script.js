@@ -211,6 +211,11 @@ function tabFilter(e) {
     const year = item.children[0].children[0].children[2].innerText;
 
     item.classList.remove("visually-hidden");
+    if (target.classList.contains("allTab")) {
+      if (!title.includes(searchString) && !author.includes(searchString) && !year.includes(searchString)) {
+        item.classList.add("visually-hidden");
+      }
+    }
     if (target.classList.contains("readTab")) {
       if (item.classList.contains("unread") || (!title.includes(searchString) && !author.includes(searchString) && !year.includes(searchString))) {
         item.classList.add("visually-hidden");

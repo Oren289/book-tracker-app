@@ -10,6 +10,8 @@ const inputAuthor = inputForm["input_author"];
 const inputYear = inputForm["input_year"];
 const checkbox = document.getElementById("complete_status");
 
+const searchInput = document.getElementById("search_input");
+
 const modalInputForm = document.getElementById("modal_input_book");
 const modalInputTitle = modalInputForm["modal_input_title"];
 const modalInputAuthor = modalInputForm["modal_input_author"];
@@ -38,6 +40,23 @@ tabContainer.addEventListener("click", tabFilter);
 document.addEventListener("DOMContentLoaded", () => {
   bookArray.forEach(createBookCard);
   removeEmptyRowText();
+});
+
+searchInput.addEventListener("keyup", (e) => {
+  const inputString = e.target.value.toLowerCase();
+  const nodes = tabRow.childNodes;
+
+  nodes.forEach((node) => {
+    const title = node.children[0].children[0].children[0].innerText.toLowerCase();
+    const author = node.children[0].children[0].children[1].innerText.toLowerCase();
+    const year = node.children[0].children[0].children[2].innerText;
+
+    if (!title.includes(inputString) && !author.includes(inputString) && !year.includes(inputString) && !node.classList.contains("visually-hidden")) {
+      node.classList.add("visually-hidden");
+    }
+  });
+
+  updateTabFilter();
 });
 
 checkbox.addEventListener("click", () => {
@@ -180,15 +199,24 @@ const removeEmptyRowText = () => {
 function tabFilter(e) {
   const target = e.target;
   const items = tabRow.childNodes;
+  const searchString = searchInput.value;
+
+  if (!target.classList.contains("readTab") && !target.classList.contains("unreadTab") && !target.classList.contains("allTab")) {
+    return;
+  }
 
   items.forEach((item) => {
+    const title = item.children[0].children[0].children[0].innerText.toLowerCase();
+    const author = item.children[0].children[0].children[1].innerText.toLowerCase();
+    const year = item.children[0].children[0].children[2].innerText;
+
     item.classList.remove("visually-hidden");
     if (target.classList.contains("readTab")) {
-      if (item.classList.contains("unread")) {
+      if (item.classList.contains("unread") || !title.includes(searchString)) {
         item.classList.add("visually-hidden");
       }
     } else if (target.classList.contains("unreadTab")) {
-      if (item.classList.contains("read")) {
+      if (item.classList.contains("read") || !title.includes(searchString)) {
         item.classList.add("visually-hidden");
       }
     }
@@ -198,6 +226,7 @@ function tabFilter(e) {
 function updateTabFilter() {
   const items = tabRow.childNodes;
   const tabs = tabContainer.childNodes;
+  const searchString = searchInput.value;
   let activeTab;
 
   tabs.forEach((tab) => {
@@ -211,13 +240,21 @@ function updateTabFilter() {
   });
 
   items.forEach((item) => {
+    const title = item.children[0].children[0].children[0].innerText.toLowerCase();
+    const author = item.children[0].children[0].children[1].innerText.toLowerCase();
+    const year = item.children[0].children[0].children[2].innerText;
+
     item.classList.remove("visually-hidden");
-    if (activeTab == "read-tab") {
-      if (item.classList.contains("unread")) {
+    if (activeTab == "all-tab") {
+      if (!title.includes(searchString) && !author.includes(searchString) && !year.includes(searchString)) {
+        item.classList.add("visually-hidden");
+      }
+    } else if (activeTab == "read-tab") {
+      if (item.classList.contains("unread") || (!title.includes(searchString) && !author.includes(searchString) && !year.includes(searchString))) {
         item.classList.add("visually-hidden");
       }
     } else if (activeTab == "unread-tab") {
-      if (item.classList.contains("read")) {
+      if (item.classList.contains("read") || (!title.includes(searchString) && !author.includes(searchString) && !year.includes(searchString))) {
         item.classList.add("visually-hidden");
       }
     }

@@ -45,7 +45,8 @@ searchInput.addEventListener("keyup", (e) => {
     const author = node.children[0].children[0].children[1].innerText.toLowerCase();
     const year = node.children[0].children[0].children[2].innerText;
 
-    if (!title.includes(inputString) && !author.includes(inputString) && !year.includes(inputString) && !node.classList.contains("visually-hidden")) {
+    node.classList.remove("visually-hidden");
+    if (!title.includes(inputString) && !author.includes(inputString) && !year.includes(inputString)) {
       node.classList.add("visually-hidden");
     }
   });
